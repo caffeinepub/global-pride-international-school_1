@@ -1,0 +1,223 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Fonts ─────────────────────────────────────────────── */
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/assets/fonts/PlusJakartaSans.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Playfair Display";
+  src: url("/assets/fonts/PlayfairDisplay.woff2") format("woff2");
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Design Tokens ─────────────────────────────────────── */
+@layer base {
+  :root {
+    --radius: 0.75rem;
+
+    /* Core palette — deep forest green + warm gold */
+    --background: 0.98 0.004 95;
+    --foreground: 0.18 0.04 160;
+
+    --card: 1 0 0;
+    --card-foreground: 0.18 0.04 160;
+
+    --popover: 1 0 0;
+    --popover-foreground: 0.18 0.04 160;
+
+    /* Primary: deep green */
+    --primary: 0.32 0.1 160;
+    --primary-foreground: 0.98 0 0;
+
+    /* Secondary: warm gold/amber */
+    --secondary: 0.84 0.12 85;
+    --secondary-foreground: 0.2 0.05 85;
+
+    /* Muted: light cream */
+    --muted: 0.95 0.01 95;
+    --muted-foreground: 0.48 0.04 160;
+
+    /* Accent: amber gold */
+    --accent: 0.78 0.16 80;
+    --accent-foreground: 0.15 0.05 60;
+
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+
+    --border: 0.88 0.02 160;
+    --input: 0.9 0.02 160;
+    --ring: 0.42 0.1 160;
+
+    --chart-1: 0.646 0.222 41.116;
+    --chart-2: 0.6 0.118 184.704;
+    --chart-3: 0.398 0.07 227.392;
+    --chart-4: 0.828 0.189 84.429;
+    --chart-5: 0.769 0.188 70.08;
+
+    --sidebar: 0.985 0 0;
+    --sidebar-foreground: 0.145 0 0;
+    --sidebar-primary: 0.205 0 0;
+    --sidebar-primary-foreground: 0.985 0 0;
+    --sidebar-accent: 0.97 0 0;
+    --sidebar-accent-foreground: 0.205 0 0;
+    --sidebar-border: 0.922 0 0;
+    --sidebar-ring: 0.708 0 0;
+
+    /* School custom tokens */
+    --school-green: 0.3 0.12 160;
+    --school-green-light: 0.45 0.1 155;
+    --school-gold: 0.78 0.16 80;
+    --school-gold-dark: 0.6 0.14 75;
+    --school-cream: 0.97 0.02 90;
+    --school-dark: 0.15 0.04 160;
+  }
+
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* ── Custom Utilities ───────────────────────────────────── */
+@layer utilities {
+  .font-display {
+    font-family: "Bricolage Grotesque", sans-serif;
+  }
+  .font-serif-display {
+    font-family: "Playfair Display", serif;
+  }
+
+  .text-school-green {
+    color: oklch(var(--school-green));
+  }
+  .bg-school-green {
+    background-color: oklch(var(--school-green));
+  }
+  .text-school-gold {
+    color: oklch(var(--school-gold));
+  }
+  .bg-school-gold {
+    background-color: oklch(var(--school-gold));
+  }
+  .bg-school-cream {
+    background-color: oklch(var(--school-cream));
+  }
+  .text-school-dark {
+    color: oklch(var(--school-dark));
+  }
+  .bg-school-dark {
+    background-color: oklch(var(--school-dark));
+  }
+
+  .section-fade {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .section-fade.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .gallery-img:hover img {
+    transform: scale(1.08);
+  }
+
+  .nav-link {
+    position: relative;
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: oklch(var(--school-gold));
+    transition: width 0.3s ease;
+  }
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    width: 100%;
+  }
+
+  /* Admission banner shimmer */
+  @keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+  .admission-banner {
+    background: linear-gradient(
+      90deg,
+      oklch(0.55 0.15 75),
+      oklch(0.65 0.18 80),
+      oklch(0.7 0.17 90),
+      oklch(0.65 0.18 80),
+      oklch(0.55 0.15 75)
+    );
+    background-size: 200% auto;
+    animation: shimmer 4s linear infinite;
+  }
+
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  @keyframes pulse-ring {
+    0% { box-shadow: 0 0 0 0 oklch(0.78 0.16 80 / 0.6); }
+    70% { box-shadow: 0 0 0 16px oklch(0.78 0.16 80 / 0); }
+    100% { box-shadow: 0 0 0 0 oklch(0.78 0.16 80 / 0); }
+  }
+
+  .hero-title {
+    animation: fadeInDown 1s ease 0.2s both;
+  }
+  .hero-subtitle {
+    animation: fadeInUp 1s ease 0.5s both;
+  }
+  .hero-cta {
+    animation: fadeInUp 1s ease 0.8s both;
+  }
+  .float-anim {
+    animation: float 3s ease-in-out infinite;
+  }
+  .pulse-btn {
+    animation: pulse-ring 2s ease-out infinite;
+  }
+}
