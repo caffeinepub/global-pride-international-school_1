@@ -120,9 +120,9 @@ export default function AdminDashboard({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3 min-w-0">
             <img
-              src="/assets/uploads/image-1.png"
+              src="/assets/uploads/image-1-1.png"
               alt="GPIS Logo"
-              className="w-9 h-9 rounded-full border-2 border-school-gold object-contain flex-shrink-0"
+              className="w-9 h-9 object-contain flex-shrink-0"
             />
             <div className="min-w-0">
               <div className="font-display font-bold text-sm md:text-base leading-tight truncate">

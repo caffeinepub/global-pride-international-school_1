@@ -66,9 +66,9 @@ export default function AdminLogin({ onLogin, onGoHome }: AdminLoginProps) {
             <div className="flex justify-center mb-4">
               <div className="relative">
                 <img
-                  src="/assets/uploads/image-1.png"
+                  src="/assets/uploads/image-1-1.png"
                   alt="Global Pride International School Logo"
-                  className="w-20 h-20 object-contain rounded-full border-4 border-school-gold shadow-golden"
+                  className="w-20 h-20 object-contain"
                   onError={(e) => {
                     // Fallback to icon if image fails
                     e.currentTarget.style.display = "none";

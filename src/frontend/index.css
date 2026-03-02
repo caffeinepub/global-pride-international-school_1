@@ -121,6 +121,9 @@
   .bg-school-green {
     background-color: oklch(var(--school-green));
   }
+  .border-school-green {
+    border-color: oklch(var(--school-green));
+  }
   .text-school-gold {
     color: oklch(var(--school-gold));
   }
@@ -137,6 +140,7 @@
     background-color: oklch(var(--school-dark));
   }
 
+  /* Section fade animation */
   .section-fade {
     opacity: 0;
     transform: translateY(30px);
@@ -177,14 +181,28 @@
   .admission-banner {
     background: linear-gradient(
       90deg,
-      oklch(0.55 0.15 75),
-      oklch(0.65 0.18 80),
-      oklch(0.7 0.17 90),
-      oklch(0.65 0.18 80),
-      oklch(0.55 0.15 75)
+      oklch(0.42 0.15 75),
+      oklch(0.55 0.18 80),
+      oklch(0.62 0.2 88),
+      oklch(0.55 0.18 80),
+      oklch(0.42 0.15 75)
     );
     background-size: 200% auto;
     animation: shimmer 4s linear infinite;
+  }
+
+  /* Marquee scroll */
+  @keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll 22s linear infinite;
+  }
+  .marquee-track:hover {
+    animation-play-state: paused;
   }
 
   @keyframes fadeInDown {
@@ -204,6 +222,24 @@
     70% { box-shadow: 0 0 0 16px oklch(0.78 0.16 80 / 0); }
     100% { box-shadow: 0 0 0 0 oklch(0.78 0.16 80 / 0); }
   }
+  @keyframes pulse-call {
+    0% { box-shadow: 0 0 0 0 oklch(0.3 0.12 160 / 0.7); }
+    70% { box-shadow: 0 0 0 14px oklch(0.3 0.12 160 / 0); }
+    100% { box-shadow: 0 0 0 0 oklch(0.3 0.12 160 / 0); }
+  }
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-10deg); }
+    75% { transform: rotate(10deg); }
+  }
+  @keyframes bounce-x {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(4px); }
+  }
 
   .hero-title {
     animation: fadeInDown 1s ease 0.2s both;
@@ -214,10 +250,142 @@
   .hero-cta {
     animation: fadeInUp 1s ease 0.8s both;
   }
+  .hero-img-card {
+    animation: fadeInUp 1.1s ease 0.4s both;
+  }
   .float-anim {
     animation: float 3s ease-in-out infinite;
   }
   .pulse-btn {
     animation: pulse-ring 2s ease-out infinite;
+  }
+  .pulse-call {
+    animation: pulse-call 2.5s ease-out infinite;
+  }
+  .spin-slow {
+    animation: spin-slow 20s linear infinite;
+  }
+  .wiggle-anim {
+    animation: wiggle 0.6s ease-in-out;
+  }
+  .bounce-x {
+    animation: bounce-x 1.2s ease-in-out infinite;
+  }
+
+  /* Dot pattern background */
+  .dot-pattern {
+    background-image: radial-gradient(circle, oklch(0.3 0.12 160 / 0.08) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .dot-pattern-gold {
+    background-image: radial-gradient(circle, oklch(0.78 0.16 80 / 0.12) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  .grid-pattern {
+    background-image:
+      linear-gradient(oklch(0.3 0.12 160 / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(0.3 0.12 160 / 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Card accent border top */
+  .program-card {
+    position: relative;
+    overflow: hidden;
+  }
+  .program-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, oklch(0.3 0.12 160), oklch(0.78 0.16 80));
+    border-radius: 12px 12px 0 0;
+  }
+
+  /* Facility card hover glow */
+  .facility-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .facility-card:hover {
+    transform: translateY(-4px) scale(1.01);
+  }
+  .facility-card:hover .facility-icon {
+    animation: wiggle 0.6s ease-in-out;
+  }
+
+  /* Section heading decoration */
+  .section-badge {
+    position: relative;
+  }
+
+  /* Wave separator */
+  .wave-separator {
+    line-height: 0;
+    overflow: hidden;
+  }
+  .wave-separator svg {
+    display: block;
+    width: 100%;
+  }
+
+  /* Glassmorphism */
+  .glass {
+    background: oklch(1 0 0 / 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid oklch(1 0 0 / 0.15);
+  }
+  .glass-green {
+    background: oklch(0.3 0.12 160 / 0.12);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid oklch(0.3 0.12 160 / 0.2);
+  }
+
+  /* Gradient text */
+  .gradient-text-gold {
+    background: linear-gradient(135deg, oklch(0.78 0.16 80), oklch(0.65 0.18 65), oklch(0.78 0.16 80));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .gradient-text-green {
+    background: linear-gradient(135deg, oklch(0.3 0.12 160), oklch(0.42 0.14 165), oklch(0.3 0.12 160));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Shine animation on cards */
+  @keyframes card-shine {
+    0% { left: -100%; }
+    50%, 100% { left: 150%; }
+  }
+  .shine-effect {
+    position: relative;
+    overflow: hidden;
+  }
+  .shine-effect::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, oklch(1 0 0 / 0.15), transparent);
+    transform: skewX(-20deg);
+    animation: card-shine 4s ease-in-out infinite;
+  }
+
+  /* Footer gradient top border */
+  .footer-gradient-border {
+    border-top: 4px solid transparent;
+    border-image: linear-gradient(90deg,
+      oklch(0.3 0.12 160),
+      oklch(0.78 0.16 80),
+      oklch(0.3 0.12 160)
+    ) 1;
   }
 }

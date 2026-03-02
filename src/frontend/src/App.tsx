@@ -461,11 +461,12 @@ function MainWebsite() {
       <Toaster position="top-right" />
 
       {/* ── Admission Banner ──────────────────────────────── */}
-      <div className="admission-banner py-2 px-4 text-center text-school-dark font-display font-bold text-sm md:text-base tracking-wide shadow-md relative z-50">
+      <div className="admission-banner py-2.5 px-4 text-center text-white font-display font-bold text-sm md:text-base tracking-wide shadow-lg relative z-50">
         <span className="inline-flex items-center gap-2 flex-wrap justify-center">
-          <Star className="w-4 h-4 fill-current" />🎓 Admissions Open 2026–2027
-          &nbsp;|&nbsp; Enroll Now – Hurry Up! Limited Seats Available
-          <Star className="w-4 h-4 fill-current" />
+          <Star className="w-4 h-4 fill-current animate-pulse" />🎓 Admissions
+          Open 2026–2027 &nbsp;|&nbsp; Enroll Now – Hurry Up! Limited Seats
+          Available
+          <Star className="w-4 h-4 fill-current animate-pulse" />
         </span>
       </div>
 
@@ -480,9 +481,9 @@ function MainWebsite() {
             aria-label="Go to Home"
           >
             <img
-              src="/assets/uploads/image-1.png"
+              src="/assets/uploads/image-1-1.png"
               alt="Global Pride International School Logo"
-              className="w-10 h-10 object-contain rounded-full border-2 border-school-gold shadow-sm"
+              className="w-12 h-12 object-contain rounded-none"
             />
             <div className="text-left">
               <div className="font-display font-bold text-school-green text-sm md:text-base leading-tight">
@@ -573,56 +574,126 @@ function MainWebsite() {
       {/* ════════════════════════════════════════════════════ */}
       <section
         id="home"
-        className="relative min-h-[92vh] flex items-center overflow-hidden"
+        className="relative min-h-[92vh] flex items-center overflow-hidden bg-gradient-to-br from-school-dark via-[oklch(0.22_0.06_155)] to-[oklch(0.18_0.04_200)]"
       >
-        {/* Background image */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src="/assets/uploads/image-1.png"
-            alt="Global Pride International School"
-            className="w-full h-full object-cover object-center"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-school-dark/90 via-school-dark/70 to-school-dark/40" />
-          <div className="absolute inset-0 bg-gradient-to-t from-school-dark/60 via-transparent to-transparent" />
+        {/* Decorative background blobs */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+          <div className="absolute -top-32 -left-32 w-[600px] h-[600px] rounded-full bg-school-green/20 blur-[100px]" />
+          <div className="absolute top-1/2 -right-32 w-[500px] h-[500px] rounded-full bg-school-gold/15 blur-[120px]" />
+          <div className="absolute bottom-0 left-1/3 w-[400px] h-[300px] rounded-full bg-school-green/10 blur-[80px]" />
+          {/* Subtle dot grid */}
+          <div className="absolute inset-0 dot-pattern opacity-10" />
         </div>
 
         {/* Content */}
-        <div className="relative z-10 container mx-auto px-4 py-20">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 bg-school-gold/20 border border-school-gold/40 text-school-gold rounded-full px-4 py-1.5 text-sm font-semibold mb-6 backdrop-blur-sm">
-              <Award className="w-4 h-4" />
-              CBSE Affiliated · Est. 2018+
+        <div className="relative z-10 container mx-auto px-4 py-16 md:py-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left: Text */}
+            <div>
+              <div className="inline-flex items-center gap-2 bg-school-gold/20 border border-school-gold/40 text-school-gold rounded-full px-4 py-1.5 text-sm font-semibold mb-6 backdrop-blur-sm">
+                <Award className="w-4 h-4" />
+                CBSE (Nursery–Gr.5) · SSC (Gr.6–Gr.10) · Est. 2018+
+              </div>
+
+              <h1 className="hero-title font-display font-bold text-white text-4xl md:text-5xl lg:text-6xl leading-tight mb-4">
+                Global Pride
+                <br />
+                <span className="text-school-gold">International</span> School
+              </h1>
+
+              <p className="hero-subtitle font-body text-white/85 text-lg md:text-xl leading-relaxed mb-6">
+                Excellence in Education with Moral Values — Nurturing future
+                leaders through modern academics, Islamic values, and holistic
+                development.
+              </p>
+
+              {/* Quick highlights */}
+              <div className="flex flex-wrap gap-3 mb-8">
+                {[
+                  "1500+ Students",
+                  "70+ Faculty",
+                  "CBSE & SSC",
+                  "Hifz Program",
+                ].map((tag) => (
+                  <span
+                    key={tag}
+                    className="inline-flex items-center gap-1.5 bg-white/10 border border-white/20 text-white/90 rounded-full px-3 py-1 text-xs font-semibold backdrop-blur-sm"
+                  >
+                    <CheckCircle2 className="w-3 h-3 text-school-gold" />
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <div className="hero-cta flex flex-wrap gap-4">
+                <Button
+                  onClick={() => scrollTo("admissions")}
+                  className="pulse-btn bg-school-gold hover:bg-school-gold/90 text-school-dark font-display font-bold text-base px-8 py-3 rounded-full shadow-golden transition-all"
+                  size="lg"
+                >
+                  Apply for Admission
+                </Button>
+                <Button
+                  onClick={() => scrollTo("about")}
+                  variant="outline"
+                  className="border-white/40 bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3 rounded-full backdrop-blur-sm"
+                  size="lg"
+                >
+                  Discover More
+                  <ChevronDown className="ml-2 w-4 h-4" />
+                </Button>
+              </div>
             </div>
 
-            <h1 className="hero-title font-display font-bold text-white text-4xl md:text-5xl lg:text-6xl leading-tight mb-4">
-              Global Pride
-              <br />
-              <span className="text-school-gold">International</span> School
-            </h1>
-
-            <p className="hero-subtitle font-body text-white/85 text-lg md:text-xl leading-relaxed mb-8">
-              Excellence in Education with Moral Values — Nurturing future
-              leaders through modern academics, Islamic values, and holistic
-              development.
-            </p>
-
-            <div className="hero-cta flex flex-wrap gap-4">
-              <Button
-                onClick={() => scrollTo("admissions")}
-                className="pulse-btn bg-school-gold hover:bg-school-gold/90 text-school-dark font-display font-bold text-base px-8 py-3 rounded-full shadow-golden transition-all"
-                size="lg"
-              >
-                Apply for Admission
-              </Button>
-              <Button
-                onClick={() => scrollTo("about")}
-                variant="outline"
-                className="border-white/40 bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3 rounded-full backdrop-blur-sm"
-                size="lg"
-              >
-                Discover More
-                <ChevronDown className="ml-2 w-4 h-4" />
-              </Button>
+            {/* Right: Featured student photo - square template */}
+            <div className="flex justify-center lg:justify-end hero-img-card">
+              <div className="relative">
+                {/* Outer glow ring */}
+                <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-school-gold/50 via-school-green/40 to-school-gold/30 blur-2xl" />
+                {/* Double border frame effect */}
+                <div className="relative p-1.5 rounded-[2rem] bg-gradient-to-br from-school-gold via-school-green to-school-gold shadow-2xl w-[320px] md:w-[400px] lg:w-[440px]">
+                  <div
+                    className="rounded-[1.6rem] overflow-hidden"
+                    style={{ aspectRatio: "1/1" }}
+                  >
+                    <img
+                      src="/assets/uploads/image-1-1.png"
+                      alt="Global Pride International School"
+                      className="w-full h-full object-contain object-center bg-white"
+                    />
+                  </div>
+                  {/* Overlay badge at bottom */}
+                  <div className="absolute bottom-0 left-1.5 right-1.5 rounded-b-[1.6rem] bg-gradient-to-t from-school-dark/90 via-school-dark/60 to-transparent p-5 pt-10">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-school-gold animate-pulse" />
+                      <span className="text-white font-semibold text-sm">
+                        Activity-Based Learning
+                      </span>
+                    </div>
+                    <p className="text-white/70 text-xs mt-1">
+                      Hands-on education that sparks curiosity
+                    </p>
+                  </div>
+                </div>
+                {/* Floating badge top-right */}
+                <div className="absolute -top-4 -right-4 bg-school-gold text-school-dark rounded-2xl px-3 py-2 shadow-golden text-center z-10">
+                  <div className="font-display font-bold text-lg leading-none">
+                    6+
+                  </div>
+                  <div className="text-[10px] font-semibold leading-none mt-0.5">
+                    Years
+                  </div>
+                </div>
+                {/* Floating badge bottom-left */}
+                <div className="absolute -bottom-4 -left-4 bg-school-green text-white rounded-2xl px-3 py-2 shadow-card text-center z-10">
+                  <div className="font-display font-bold text-lg leading-none">
+                    1500+
+                  </div>
+                  <div className="text-[10px] font-semibold leading-none mt-0.5">
+                    Students
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -633,21 +704,45 @@ function MainWebsite() {
         </div>
       </section>
 
+      {/* Wave divider between hero and stats */}
+      <div
+        className="wave-separator bg-school-green"
+        style={{ marginTop: "-2px" }}
+      >
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 1440 60"
+          preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0,40 C360,80 1080,0 1440,40 L1440,60 L0,60 Z"
+            fill="oklch(0.97 0.02 90)"
+          />
+        </svg>
+      </div>
+
       {/* Stats Row */}
-      <div className="bg-school-green text-white py-6">
-        <div className="container mx-auto px-4">
+      <div
+        className="bg-school-green text-white py-8 relative overflow-hidden"
+        style={{ marginTop: "-60px", paddingTop: "0" }}
+      >
+        <div className="absolute inset-0 dot-pattern opacity-30 pointer-events-none" />
+        <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
             {[
               { value: "1500+", label: "Students", icon: Users },
               { value: "70+", label: "Faculty & Staff", icon: GraduationCap },
               { value: "6+", label: "Years of Excellence", icon: Star },
-              { value: "CBSE", label: "Certified", icon: Award },
+              { value: "CBSE+SSC", label: "Curriculum", icon: Award },
             ].map(({ value, label, icon: Icon }) => (
               <div
                 key={label}
-                className="flex flex-col items-center gap-1 py-2"
+                className="flex flex-col items-center gap-1 py-4 px-3 rounded-2xl hover:bg-white/10 transition-colors duration-300"
               >
-                <Icon className="w-5 h-5 text-school-gold mb-1" />
+                <div className="w-12 h-12 bg-school-gold/20 rounded-full flex items-center justify-center mb-2 border border-school-gold/30">
+                  <Icon className="w-6 h-6 text-school-gold" />
+                </div>
                 <div className="font-display font-bold text-2xl md:text-3xl text-school-gold">
                   {value}
                 </div>
@@ -665,28 +760,52 @@ function MainWebsite() {
             {[
               {
                 icon: BookOpen,
-                label: "CBSE Curriculum",
+                label: "CBSE & SSC",
                 color: "text-emerald-600",
+                bg: "bg-emerald-50 group-hover:bg-emerald-100",
               },
               {
                 icon: Heart,
                 label: "Islamic Education",
                 color: "text-rose-500",
+                bg: "bg-rose-50 group-hover:bg-rose-100",
               },
-              { icon: Star, label: "Hifz Program", color: "text-amber-500" },
+              {
+                icon: Star,
+                label: "Hifz Program",
+                color: "text-amber-500",
+                bg: "bg-amber-50 group-hover:bg-amber-100",
+              },
               {
                 icon: FlaskConical,
                 label: "IIT/NEET Foundation",
                 color: "text-blue-600",
+                bg: "bg-blue-50 group-hover:bg-blue-100",
               },
-              { icon: Bus, label: "Transport", color: "text-orange-500" },
-              { icon: Camera, label: "CCTV Secured", color: "text-purple-600" },
-            ].map(({ icon: Icon, label, color }) => (
+              {
+                icon: Bus,
+                label: "Transport",
+                color: "text-orange-500",
+                bg: "bg-orange-50 group-hover:bg-orange-100",
+              },
+              {
+                icon: Camera,
+                label: "CCTV Secured",
+                color: "text-purple-600",
+                bg: "bg-purple-50 group-hover:bg-purple-100",
+              },
+            ].map(({ icon: Icon, label, color, bg }) => (
               <div
                 key={label}
-                className="flex flex-col items-center gap-2 p-4 bg-white rounded-xl shadow-xs hover:shadow-card transition-shadow text-center"
+                className="group flex flex-col items-center gap-2 p-4 bg-white rounded-2xl shadow-xs hover:shadow-card transition-all duration-300 text-center hover:-translate-y-1 cursor-default"
               >
-                <Icon className={`w-7 h-7 ${color}`} />
+                <div
+                  className={`w-12 h-12 rounded-xl ${bg} flex items-center justify-center transition-colors duration-300`}
+                >
+                  <Icon
+                    className={`w-6 h-6 ${color} group-hover:scale-110 transition-transform duration-300`}
+                  />
+                </div>
                 <span className="font-body font-semibold text-xs text-foreground/80 leading-tight">
                   {label}
                 </span>
@@ -696,19 +815,51 @@ function MainWebsite() {
         </div>
       </div>
 
+      {/* Animated Marquee Trust Strip */}
+      <div className="bg-school-dark text-white py-3 overflow-hidden relative">
+        <div className="marquee-track">
+          {(["a", "b"] as const).map((outerIdx) => (
+            <div key={outerIdx} className="flex items-center gap-0 shrink-0">
+              {[
+                { icon: BookOpen, text: "CBSE Curriculum (Nursery–Gr.5)" },
+                { icon: GraduationCap, text: "SSC Board (Gr.6–Gr.10)" },
+                { icon: Users, text: "1500+ Students" },
+                { icon: Award, text: "6+ Years of Excellence" },
+                { icon: Star, text: "Intensive Hifz Program" },
+                { icon: FlaskConical, text: "IIT & NEET Foundation" },
+                { icon: Shield, text: "CCTV Secured Campus" },
+                { icon: Bus, text: "Safe Transport Facility" },
+                { icon: GraduationCap, text: "70+ Qualified Faculty" },
+                { icon: Heart, text: "Islamic Values" },
+              ].map(({ icon: Icon, text }) => (
+                <span
+                  key={text}
+                  className="inline-flex items-center gap-2 px-6 text-sm font-semibold whitespace-nowrap"
+                >
+                  <Icon className="w-4 h-4 text-school-gold flex-shrink-0" />
+                  <span className="text-white/90">{text}</span>
+                  <span className="text-school-gold/40 ml-4">◆</span>
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* ════════════════════════════════════════════════════ */}
       {/* ── Section 2: About ────────────────────────────── */}
       {/* ════════════════════════════════════════════════════ */}
-      <section id="about" className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+      <section id="about" className="py-20 bg-white relative overflow-hidden">
+        <div className="absolute inset-0 grid-pattern pointer-events-none opacity-60" />
+        <div className="container mx-auto px-4 relative z-10">
           <FadeIn className="text-center mb-14">
-            <div className="inline-flex items-center gap-2 bg-school-green/10 text-school-green rounded-full px-4 py-1.5 text-sm font-semibold mb-4">
+            <div className="inline-flex items-center gap-2 bg-school-green/10 text-school-green rounded-full px-4 py-1.5 text-sm font-semibold mb-4 border border-school-green/20">
               <BookOpen className="w-4 h-4" />
               About Us
             </div>
             <h2 className="font-display font-bold text-3xl md:text-4xl text-school-dark mb-4">
               Shaping Bright Futures with{" "}
-              <span className="text-school-gold">Purpose & Pride</span>
+              <span className="gradient-text-gold">Purpose & Pride</span>
             </h2>
             <p className="font-body text-foreground/70 max-w-2xl mx-auto text-base leading-relaxed">
               Global Pride International School is a CBSE-affiliated institution
@@ -725,9 +876,12 @@ function MainWebsite() {
                   Founded with a vision to bridge academic excellence with
                   Islamic moral values, our school provides an environment where
                   every student is encouraged to discover their unique
-                  potential. Our CBSE curriculum is enriched with activity-based
-                  learning, smart technology, and dedicated mentoring by highly
-                  qualified faculty.
+                  potential. From <strong>Nursery to Grade 5</strong>, we follow
+                  the <strong>CBSE curriculum</strong>; from{" "}
+                  <strong>Grade 6 to Grade 10</strong>, students are guided
+                  through the <strong>SSC board</strong> — both enriched with
+                  activity-based learning, smart technology, and dedicated
+                  mentoring.
                 </p>
                 <p className="font-body text-foreground/80 leading-relaxed">
                   With over <strong>1500 students</strong>,{" "}
@@ -738,8 +892,8 @@ function MainWebsite() {
                 </p>
                 <div className="flex flex-wrap gap-3 pt-2">
                   {[
-                    "CBSE Affiliated",
-                    "Modern Education",
+                    "CBSE (Nursery–Gr.5)",
+                    "SSC (Gr.6–Gr.10)",
                     "Islamic Values",
                     "Holistic Development",
                   ].map((tag) => (
@@ -802,10 +956,11 @@ function MainWebsite() {
                   Our Mission
                 </h3>
                 <p className="font-body text-school-dark/85 leading-relaxed">
-                  To provide quality education blending CBSE academics with
-                  Islamic values, fostering critical thinking, creativity, and
-                  character development through innovative teaching methods,
-                  experienced faculty, and a safe, nurturing campus environment.
+                  To provide quality education through CBSE (Nursery–Grade 5)
+                  and SSC (Grade 6–10) curricula blended with Islamic values,
+                  fostering critical thinking, creativity, and character
+                  development through innovative teaching methods, experienced
+                  faculty, and a safe, nurturing campus environment.
                 </p>
               </div>
             </FadeIn>
@@ -816,8 +971,12 @@ function MainWebsite() {
       {/* ════════════════════════════════════════════════════ */}
       {/* ── Section 3: Programs ─────────────────────────── */}
       {/* ════════════════════════════════════════════════════ */}
-      <section id="programs" className="py-20 bg-school-cream">
-        <div className="container mx-auto px-4">
+      <section
+        id="programs"
+        className="py-20 bg-school-cream relative overflow-hidden"
+      >
+        <div className="absolute inset-0 dot-pattern-gold pointer-events-none" />
+        <div className="container mx-auto px-4 relative z-10">
           <FadeIn className="text-center mb-14">
             <div className="inline-flex items-center gap-2 bg-school-gold/20 text-school-gold-dark border border-school-gold/30 rounded-full px-4 py-1.5 text-sm font-semibold mb-4">
               <GraduationCap className="w-4 h-4" />
@@ -825,7 +984,7 @@ function MainWebsite() {
             </div>
             <h2 className="font-display font-bold text-3xl md:text-4xl text-school-dark mb-4">
               Programs Designed for{" "}
-              <span className="text-school-green">Every Learner</span>
+              <span className="gradient-text-green">Every Learner</span>
             </h2>
             <p className="font-body text-foreground/70 max-w-2xl mx-auto">
               From foundational early learning to advanced IIT/NEET preparation
@@ -833,92 +992,142 @@ function MainWebsite() {
             </p>
           </FadeIn>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {[
               {
-                title: "CBSE Academic Program",
-                desc: "A comprehensive CBSE-aligned curriculum from Nursery to Grade 10, focused on conceptual clarity, analytical thinking, and board exam excellence.",
+                title: "CBSE Curriculum",
+                subtitle: "Nursery – Grade 5",
+                desc: "CBSE-aligned curriculum building strong foundations in language, mathematics, science, and values through activity-based learning.",
                 img: "/assets/uploads/WhatsApp-Image-2026-03-01-at-6.56.55-AM-2--9.jpeg",
                 icon: BookOpen,
-                color: "bg-emerald-50 text-emerald-700",
+                badge: "bg-emerald-100 text-emerald-700",
+                topBar: "from-emerald-400 to-emerald-600",
               },
               {
-                title: "Intensive Hifz Program",
-                desc: "Dedicated Quran memorisation under qualified Huffaz teachers, with a structured schedule that balances academic studies and spiritual growth.",
-                img: "/assets/uploads/WhatsApp-Image-2026-03-01-at-6.56.51-AM-13.jpeg",
+                title: "SSC Curriculum",
+                subtitle: "Grade 6 – Grade 10",
+                desc: "Rigorous SSC-board preparation for Grades 6–10 with conceptual clarity, analytical thinking, and state board exam excellence.",
+                img: "/assets/uploads/WhatsApp-Image-2026-03-01-at-6.56.53-AM-12.jpeg",
+                icon: GraduationCap,
+                badge: "bg-teal-100 text-teal-700",
+                topBar: "from-teal-400 to-teal-600",
+              },
+              {
+                title: "Intensive Hifz",
+                subtitle: "Quran Memorisation",
+                desc: "Dedicated Quran memorisation under qualified Huffaz, balancing academic excellence with deep spiritual growth.",
+                img: "/assets/uploads/WhatsApp-Image-2026-03-01-at-9.02.11-PM-1.jpeg",
                 icon: Star,
-                color: "bg-amber-50 text-amber-700",
+                badge: "bg-amber-100 text-amber-700",
+                topBar: "from-amber-400 to-amber-600",
               },
               {
                 title: "IIT & NEET Foundation",
-                desc: "Early competitive exam preparation with concept-driven coaching in Physics, Chemistry, Mathematics, and Biology for Grades 8–10.",
+                subtitle: "Competitive Coaching",
+                desc: "Concept-driven coaching in Physics, Chemistry, Mathematics, and Biology for Grades 8–10 targeting IIT and NEET.",
                 img: "/assets/uploads/WhatsApp-Image-2026-03-01-at-6.56.56-AM-2--10.jpeg",
                 icon: FlaskConical,
-                color: "bg-blue-50 text-blue-700",
+                badge: "bg-blue-100 text-blue-700",
+                topBar: "from-blue-400 to-blue-600",
               },
               {
                 title: "Activity-Based Learning",
-                desc: "Hands-on projects, science experiments, art & craft, and experiential learning activities that make education engaging and memorable.",
+                subtitle: "Experiential Education",
+                desc: "Hands-on projects, science experiments, art & craft, and experiential activities that make education engaging.",
                 img: "/assets/uploads/WhatsApp-Image-2026-03-01-at-6.56.57-AM-2--8.jpeg",
                 icon: Music,
-                color: "bg-rose-50 text-rose-700",
+                badge: "bg-rose-100 text-rose-700",
+                topBar: "from-rose-400 to-rose-600",
               },
               {
                 title: "Interactive Classrooms",
-                desc: "Smart boards, multimedia learning tools, and digital resources integrated into every classroom to create dynamic, tech-enabled lessons.",
-                img: "/assets/uploads/WhatsApp-Image-2026-03-01-at-6.56.53-AM-12.jpeg",
+                subtitle: "Smart Technology",
+                desc: "Smart boards, multimedia tools, and digital resources making every lesson dynamic and tech-enabled.",
+                img: "/assets/uploads/WhatsApp-Image-2026-03-01-at-6.56.55-AM-2--9.jpeg",
                 icon: Monitor,
-                color: "bg-violet-50 text-violet-700",
+                badge: "bg-violet-100 text-violet-700",
+                topBar: "from-violet-400 to-violet-600",
               },
               {
-                title: "Computer Lab Facilities",
-                desc: "Well-equipped computer laboratories with modern hardware and software, offering practical IT education from early grades.",
+                title: "Computer Lab",
+                subtitle: "Digital Skills",
+                desc: "Well-equipped computer laboratories with modern hardware and software for practical IT education from early grades.",
                 img: "/assets/uploads/WhatsApp-Image-2026-03-01-at-6.56.49-AM-3.jpeg",
                 icon: Cpu,
-                color: "bg-orange-50 text-orange-700",
+                badge: "bg-orange-100 text-orange-700",
+                topBar: "from-orange-400 to-orange-600",
               },
-            ].map(({ title, desc, img, icon: Icon, color }, i) => (
-              <FadeIn key={title} delay={i * 80}>
-                <div className="bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
-                  <div className="relative overflow-hidden h-48">
-                    <img
-                      src={img}
-                      alt={title}
-                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                  </div>
-                  <div className="p-6 flex-1 flex flex-col">
-                    <div
-                      className={`inline-flex items-center gap-2 ${color} rounded-full px-3 py-1 text-xs font-semibold mb-3 w-fit`}
-                    >
-                      <Icon className="w-3.5 h-3.5" />
-                      {title}
+            ].map(
+              (
+                { title, subtitle, desc, img, icon: Icon, badge, topBar },
+                i,
+              ) => (
+                <FadeIn key={title} delay={i * 70}>
+                  <div className="program-card bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-2 h-full flex flex-col group">
+                    <div className={`h-1.5 bg-gradient-to-r ${topBar}`} />
+                    <div className="relative overflow-hidden h-52">
+                      <img
+                        src={img}
+                        alt={title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-108"
+                        style={{ transformOrigin: "center" }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                      <div className="absolute bottom-3 left-3 right-3">
+                        <div
+                          className={`inline-flex items-center gap-1.5 ${badge} rounded-full px-2.5 py-0.5 text-xs font-bold backdrop-blur-sm`}
+                        >
+                          <Icon className="w-3 h-3" />
+                          {subtitle}
+                        </div>
+                      </div>
                     </div>
-                    <p className="font-body text-foreground/70 text-sm leading-relaxed flex-1">
-                      {desc}
-                    </p>
+                    <div className="p-5 flex-1 flex flex-col">
+                      <h3 className="font-display font-bold text-school-dark text-sm mb-2 leading-snug">
+                        {title}
+                      </h3>
+                      <p className="font-body text-foreground/65 text-xs leading-relaxed flex-1">
+                        {desc}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </FadeIn>
-            ))}
+                </FadeIn>
+              ),
+            )}
           </div>
         </div>
       </section>
 
+      {/* Wave divider before Facilities */}
+      <div className="wave-separator bg-school-cream">
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 1440 50"
+          preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M0,0 C480,50 960,0 1440,30 L1440,50 L0,50 Z" fill="white" />
+        </svg>
+      </div>
+
       {/* ════════════════════════════════════════════════════ */}
       {/* ── Section 4: Facilities ───────────────────────── */}
       {/* ════════════════════════════════════════════════════ */}
-      <section id="facilities" className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+      <section
+        id="facilities"
+        className="py-20 bg-white relative overflow-hidden"
+      >
+        <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-school-gold/5 -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-school-green/5 translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+        <div className="container mx-auto px-4 relative z-10">
           <FadeIn className="text-center mb-14">
-            <div className="inline-flex items-center gap-2 bg-school-green/10 text-school-green rounded-full px-4 py-1.5 text-sm font-semibold mb-4">
+            <div className="inline-flex items-center gap-2 bg-school-green/10 text-school-green rounded-full px-4 py-1.5 text-sm font-semibold mb-4 border border-school-green/20">
               <Shield className="w-4 h-4" />
               World-Class Facilities
             </div>
             <h2 className="font-display font-bold text-3xl md:text-4xl text-school-dark mb-4">
               A Safe &{" "}
-              <span className="text-school-gold">Inspiring Campus</span>
+              <span className="gradient-text-gold">Inspiring Campus</span>
             </h2>
             <p className="font-body text-foreground/70 max-w-2xl mx-auto">
               Every facility is thoughtfully designed to ensure safety, comfort,
@@ -931,52 +1140,58 @@ function MainWebsite() {
               {
                 icon: Bus,
                 title: "Transport Facilities",
-                desc: "Safe and reliable transport services covering major areas. GPS-tracked vehicles with trained drivers and attendants ensure your child's safety on the road.",
-                bg: "bg-orange-50",
-                iconBg: "bg-orange-100 text-orange-600",
+                desc: "Safe and reliable transport services covering major areas. GPS-tracked vehicles with trained drivers ensure your child's safety on the road.",
+                bg: "bg-gradient-to-br from-orange-50 to-orange-100",
+                iconBg: "bg-orange-500 text-white",
+                border: "border-orange-100",
               },
               {
                 icon: Camera,
                 title: "CCTV Surveillance",
-                desc: "24/7 CCTV monitoring across the entire campus including classrooms, corridors, and entry points to maintain a completely secure environment.",
-                bg: "bg-purple-50",
-                iconBg: "bg-purple-100 text-purple-600",
+                desc: "24/7 CCTV monitoring across the entire campus including classrooms and entry points to maintain a completely secure environment.",
+                bg: "bg-gradient-to-br from-purple-50 to-purple-100",
+                iconBg: "bg-purple-500 text-white",
+                border: "border-purple-100",
               },
               {
                 icon: Monitor,
                 title: "Smart Classrooms",
                 desc: "Every classroom is equipped with interactive smart boards, projectors, and digital learning tools that make lessons engaging and effective.",
-                bg: "bg-blue-50",
-                iconBg: "bg-blue-100 text-blue-600",
+                bg: "bg-gradient-to-br from-blue-50 to-blue-100",
+                iconBg: "bg-blue-500 text-white",
+                border: "border-blue-100",
               },
               {
                 icon: Shield,
-                title: "Safe Campus Environment",
-                desc: "Secured entry gates, regular safety drills, and a dedicated security team ensure our campus is a worry-free zone for students and parents alike.",
-                bg: "bg-green-50",
-                iconBg: "bg-green-100 text-green-600",
+                title: "Safe Campus",
+                desc: "Secured entry gates, regular safety drills, and a dedicated security team ensure our campus is a worry-free zone for everyone.",
+                bg: "bg-gradient-to-br from-green-50 to-emerald-100",
+                iconBg: "bg-emerald-500 text-white",
+                border: "border-green-100",
               },
               {
                 icon: GraduationCap,
-                title: "Qualified Faculty Support",
-                desc: "Over 70 highly qualified, experienced, and dedicated teachers and staff who are committed to nurturing each student's academic and personal growth.",
-                bg: "bg-amber-50",
-                iconBg: "bg-amber-100 text-amber-600",
+                title: "Qualified Faculty",
+                desc: "Over 70 highly qualified, experienced, and dedicated teachers committed to nurturing each student's academic and personal growth.",
+                bg: "bg-gradient-to-br from-amber-50 to-amber-100",
+                iconBg: "bg-amber-500 text-white",
+                border: "border-amber-100",
               },
               {
                 icon: FlaskConical,
                 title: "Science & Computer Labs",
-                desc: "Fully equipped science and computer laboratories providing hands-on experimental learning and practical technology education from early grades.",
-                bg: "bg-rose-50",
-                iconBg: "bg-rose-100 text-rose-600",
+                desc: "Fully equipped laboratories providing hands-on experimental learning and practical technology education from early grades.",
+                bg: "bg-gradient-to-br from-rose-50 to-rose-100",
+                iconBg: "bg-rose-500 text-white",
+                border: "border-rose-100",
               },
-            ].map(({ icon: Icon, title, desc, bg, iconBg }, i) => (
+            ].map(({ icon: Icon, title, desc, bg, iconBg, border }, i) => (
               <FadeIn key={title} delay={i * 80}>
                 <div
-                  className={`${bg} rounded-2xl p-6 hover:shadow-card transition-all duration-300 h-full`}
+                  className={`facility-card ${bg} rounded-2xl p-6 h-full border ${border} shadow-xs hover:shadow-card`}
                 >
                   <div
-                    className={`w-14 h-14 ${iconBg} rounded-2xl flex items-center justify-center mb-4`}
+                    className={`facility-icon w-14 h-14 ${iconBg} rounded-2xl flex items-center justify-center mb-5 shadow-md`}
                   >
                     <Icon className="w-7 h-7" />
                   </div>
@@ -1103,17 +1318,18 @@ function MainWebsite() {
       >
         {/* Background decoration */}
         <div className="absolute inset-0 bg-gradient-to-br from-school-green/5 via-transparent to-school-gold/5 pointer-events-none" />
+        <div className="absolute inset-0 dot-pattern pointer-events-none opacity-40" />
 
         <div className="container mx-auto px-4 relative z-10">
           <FadeIn className="text-center mb-14">
-            <div className="inline-flex items-center gap-2 bg-school-green text-white rounded-full px-5 py-2 text-sm font-bold mb-4 shadow-card">
-              <Star className="w-4 h-4 text-school-gold fill-current" />
-              Admissions Open 2026–2027
-              <Star className="w-4 h-4 text-school-gold fill-current" />
+            <div className="inline-flex items-center gap-2 shine-effect bg-gradient-to-r from-school-green via-emerald-600 to-school-green text-white rounded-full px-6 py-2.5 text-sm font-bold mb-6 shadow-golden">
+              <Star className="w-4 h-4 text-school-gold fill-current animate-pulse" />
+              🎓 Admissions Open 2026–2027 — Limited Seats!
+              <Star className="w-4 h-4 text-school-gold fill-current animate-pulse" />
             </div>
             <h2 className="font-display font-bold text-3xl md:text-4xl text-school-dark mb-4">
               Begin Your Child's{" "}
-              <span className="text-school-gold">Journey Here</span>
+              <span className="gradient-text-gold">Journey Here</span>
             </h2>
             <p className="font-body text-foreground/70 max-w-2xl mx-auto text-base leading-relaxed">
               Give your child the gift of quality education in a caring,
@@ -1133,7 +1349,7 @@ function MainWebsite() {
                   </h3>
                   <ul className="space-y-3">
                     {[
-                      "CBSE Curriculum with activity-based learning",
+                      "CBSE (Nursery–Gr.5) & SSC (Gr.6–Gr.10) curriculum",
                       "Intensive Hifz Program with academic balance",
                       "IIT & NEET Foundation coaching",
                       "Interactive smart classrooms",
@@ -1385,8 +1601,12 @@ function MainWebsite() {
       {/* ════════════════════════════════════════════════════ */}
       {/* ── Section 7: Contact ──────────────────────────── */}
       {/* ════════════════════════════════════════════════════ */}
-      <section id="contact" className="py-20 bg-school-cream">
-        <div className="container mx-auto px-4">
+      <section
+        id="contact"
+        className="py-20 bg-school-cream relative overflow-hidden"
+      >
+        <div className="absolute inset-0 dot-pattern pointer-events-none opacity-50" />
+        <div className="container mx-auto px-4 relative z-10">
           <FadeIn className="text-center mb-14">
             <div className="inline-flex items-center gap-2 bg-school-green/10 text-school-green rounded-full px-4 py-1.5 text-sm font-semibold mb-4">
               <MapPin className="w-4 h-4" />
@@ -1404,84 +1624,102 @@ function MainWebsite() {
           {/* Branch Cards */}
           <div className="grid md:grid-cols-2 gap-6 mb-12">
             <FadeIn delay={100}>
-              <div className="bg-white rounded-2xl shadow-card p-8 border border-school-green/10 h-full">
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="w-12 h-12 bg-school-green rounded-full flex items-center justify-center">
-                    <MapPin className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <div className="font-display font-bold text-school-dark text-lg">
-                      Main Branch
-                    </div>
-                    <div className="text-school-green text-sm font-semibold">
-                      Rakshapuram
-                    </div>
-                  </div>
+              <div className="bg-white rounded-2xl shadow-card border border-school-green/10 h-full overflow-hidden">
+                <div className="w-full h-56 overflow-hidden">
+                  <img
+                    src="/assets/uploads/new-Building.jpg-2.jpeg"
+                    alt="Main Branch Building - Rakshapuram"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3 text-foreground/80">
-                    <MapPin className="w-4 h-4 text-school-gold flex-shrink-0" />
-                    <span className="font-body text-sm">
-                      Rakshapuram, Telangana
-                    </span>
+                <div className="p-8">
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className="w-12 h-12 bg-school-green rounded-full flex items-center justify-center">
+                      <MapPin className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="font-display font-bold text-school-dark text-lg">
+                        Main Branch
+                      </div>
+                      <div className="text-school-green text-sm font-semibold">
+                        Rakshapuram
+                      </div>
+                    </div>
                   </div>
-                  <a
-                    href="tel:9866058320"
-                    className="flex items-center gap-3 text-school-green hover:text-school-green/80 transition-colors group"
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3 text-foreground/80">
+                      <MapPin className="w-4 h-4 text-school-gold flex-shrink-0" />
+                      <span className="font-body text-sm">
+                        Rakshapuram, Telangana
+                      </span>
+                    </div>
+                    <a
+                      href="tel:9866058320"
+                      className="flex items-center gap-3 text-school-green hover:text-school-green/80 transition-colors group"
+                    >
+                      <Phone className="w-4 h-4 text-school-gold flex-shrink-0" />
+                      <span className="font-display font-bold text-base group-hover:underline">
+                        +91 9866058320
+                      </span>
+                    </a>
+                  </div>
+                  <Button
+                    asChild
+                    className="mt-5 w-full bg-school-green hover:bg-school-green/90 text-white font-bold rounded-full"
                   >
-                    <Phone className="w-4 h-4 text-school-gold flex-shrink-0" />
-                    <span className="font-display font-bold text-base group-hover:underline">
-                      +91 9866058320
-                    </span>
-                  </a>
+                    <a href="tel:9866058320">Call Main Branch</a>
+                  </Button>
                 </div>
-                <Button
-                  asChild
-                  className="mt-5 w-full bg-school-green hover:bg-school-green/90 text-white font-bold rounded-full"
-                >
-                  <a href="tel:9866058320">Call Main Branch</a>
-                </Button>
               </div>
             </FadeIn>
 
             <FadeIn delay={200}>
-              <div className="bg-white rounded-2xl shadow-card p-8 border border-school-gold/20 h-full">
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="w-12 h-12 bg-school-gold rounded-full flex items-center justify-center">
-                    <MapPin className="w-6 h-6 text-school-dark" />
-                  </div>
-                  <div>
-                    <div className="font-display font-bold text-school-dark text-lg">
-                      Second Branch
-                    </div>
-                    <div className="text-school-gold-dark text-sm font-semibold">
-                      Naseeb Nagar, Phool Bagh
-                    </div>
-                  </div>
+              <div className="bg-white rounded-2xl shadow-card border border-school-gold/20 h-full overflow-hidden">
+                <div className="w-full h-56 overflow-hidden">
+                  <img
+                    src="/assets/uploads/New-Branch.jpg-1.jpeg"
+                    alt="Second Branch Building - Naseeb Nagar"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3 text-foreground/80">
-                    <MapPin className="w-4 h-4 text-school-green flex-shrink-0" />
-                    <span className="font-body text-sm">
-                      Naseeb Nagar, Phool Bagh, Telangana
-                    </span>
+                <div className="p-8">
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className="w-12 h-12 bg-school-gold rounded-full flex items-center justify-center">
+                      <MapPin className="w-6 h-6 text-school-dark" />
+                    </div>
+                    <div>
+                      <div className="font-display font-bold text-school-dark text-lg">
+                        Second Branch
+                      </div>
+                      <div className="text-school-gold-dark text-sm font-semibold">
+                        Naseeb Nagar, Phool Bagh
+                      </div>
+                    </div>
                   </div>
-                  <a
-                    href="tel:9346716575"
-                    className="flex items-center gap-3 text-school-green hover:text-school-green/80 transition-colors group"
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3 text-foreground/80">
+                      <MapPin className="w-4 h-4 text-school-green flex-shrink-0" />
+                      <span className="font-body text-sm">
+                        Naseeb Nagar, Phool Bagh, Telangana
+                      </span>
+                    </div>
+                    <a
+                      href="tel:9346716575"
+                      className="flex items-center gap-3 text-school-green hover:text-school-green/80 transition-colors group"
+                    >
+                      <Phone className="w-4 h-4 text-school-green flex-shrink-0" />
+                      <span className="font-display font-bold text-base group-hover:underline">
+                        +91 9346716575
+                      </span>
+                    </a>
+                  </div>
+                  <Button
+                    asChild
+                    className="mt-5 w-full bg-school-gold hover:bg-school-gold/90 text-school-dark font-bold rounded-full"
                   >
-                    <Phone className="w-4 h-4 text-school-green flex-shrink-0" />
-                    <span className="font-display font-bold text-base group-hover:underline">
-                      +91 9346716575
-                    </span>
-                  </a>
+                    <a href="tel:9346716575">Call Second Branch</a>
+                  </Button>
                 </div>
-                <Button
-                  asChild
-                  className="mt-5 w-full bg-school-gold hover:bg-school-gold/90 text-school-dark font-bold rounded-full"
-                >
-                  <a href="tel:9346716575">Call Second Branch</a>
-                </Button>
               </div>
             </FadeIn>
           </div>
@@ -1552,44 +1790,132 @@ function MainWebsite() {
 
           {/* Map placeholder */}
           <FadeIn>
-            <div className="rounded-2xl overflow-hidden shadow-card border border-border">
-              <div className="bg-school-green/10 h-10 flex items-center px-6 border-b border-school-green/10">
-                <div className="flex items-center gap-2 text-sm text-school-green font-semibold">
-                  <MapPin className="w-4 h-4" />
-                  Map Location — Rakshapuram (Main Branch)
+            <div className="rounded-3xl overflow-hidden shadow-card-hover border border-school-green/15">
+              {/* Map header */}
+              <div className="bg-school-green px-6 py-3 flex items-center justify-between">
+                <div className="flex items-center gap-2 text-sm text-white font-bold">
+                  <MapPin className="w-4 h-4 text-school-gold" />
+                  Our Locations — Global Pride International School
+                </div>
+                <div className="flex gap-1.5">
+                  <div className="w-3 h-3 rounded-full bg-white/20" />
+                  <div className="w-3 h-3 rounded-full bg-white/20" />
+                  <div className="w-3 h-3 rounded-full bg-white/40" />
                 </div>
               </div>
-              <div className="relative bg-gradient-to-br from-school-green/5 to-school-gold/5 h-64 flex items-center justify-center">
-                <div className="text-center space-y-3">
-                  <div className="w-16 h-16 bg-school-green rounded-full flex items-center justify-center mx-auto float-anim shadow-golden">
-                    <MapPin className="w-8 h-8 text-white" />
+              {/* Polished map area */}
+              <div className="relative bg-gradient-to-br from-emerald-50 via-teal-50 to-amber-50 h-72 overflow-hidden">
+                {/* Decorative map-like grid */}
+                <div className="absolute inset-0 grid-pattern opacity-40" />
+                {/* Simulated road lines */}
+                <svg
+                  aria-hidden="true"
+                  className="absolute inset-0 w-full h-full opacity-20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <line
+                    x1="0"
+                    y1="40%"
+                    x2="100%"
+                    y2="40%"
+                    stroke="oklch(0.3 0.12 160)"
+                    strokeWidth="2"
+                  />
+                  <line
+                    x1="0"
+                    y1="60%"
+                    x2="100%"
+                    y2="60%"
+                    stroke="oklch(0.3 0.12 160)"
+                    strokeWidth="1"
+                    strokeDasharray="8,6"
+                  />
+                  <line
+                    x1="35%"
+                    y1="0"
+                    x2="35%"
+                    y2="100%"
+                    stroke="oklch(0.3 0.12 160)"
+                    strokeWidth="2"
+                  />
+                  <line
+                    x1="65%"
+                    y1="0"
+                    x2="65%"
+                    y2="100%"
+                    stroke="oklch(0.3 0.12 160)"
+                    strokeWidth="1"
+                    strokeDasharray="8,6"
+                  />
+                  <rect
+                    x="30%"
+                    y="20%"
+                    width="15%"
+                    height="20%"
+                    rx="4"
+                    fill="oklch(0.3 0.12 160)"
+                    fillOpacity="0.07"
+                  />
+                  <rect
+                    x="55%"
+                    y="45%"
+                    width="20%"
+                    height="18%"
+                    rx="4"
+                    fill="oklch(0.78 0.16 80)"
+                    fillOpacity="0.07"
+                  />
+                </svg>
+                {/* Location pins */}
+                <div className="absolute top-1/2 left-[35%] -translate-x-1/2 -translate-y-1/2 text-center">
+                  <div className="w-14 h-14 bg-school-green rounded-full flex items-center justify-center mx-auto float-anim shadow-golden border-4 border-white">
+                    <MapPin className="w-7 h-7 text-white" />
                   </div>
-                  <div className="font-display font-bold text-school-dark">
-                    Global Pride International School
+                  <div className="mt-2 bg-white rounded-xl shadow-card px-3 py-1.5 text-center whitespace-nowrap border border-school-green/10">
+                    <div className="font-display font-bold text-school-dark text-xs">
+                      Main Branch
+                    </div>
+                    <div className="text-school-green font-semibold text-[10px]">
+                      Rakshapuram
+                    </div>
                   </div>
-                  <div className="text-sm text-foreground/60">
-                    Rakshapuram · Naseeb Nagar, Phool Bagh
+                </div>
+                <div className="absolute top-[45%] left-[65%] -translate-x-1/2 -translate-y-1/2 text-center">
+                  <div
+                    className="w-12 h-12 bg-school-gold rounded-full flex items-center justify-center mx-auto shadow-golden border-4 border-white"
+                    style={{ animation: "float 3s ease-in-out 1.5s infinite" }}
+                  >
+                    <MapPin className="w-6 h-6 text-school-dark" />
                   </div>
-                  <div className="flex gap-3 justify-center">
-                    <a
-                      href="https://maps.google.com?q=Rakshapuram"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 bg-school-green text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-school-green/90 transition-colors"
-                    >
-                      <MapPin className="w-3 h-3" />
-                      Main Branch Map
-                    </a>
-                    <a
-                      href="https://maps.google.com?q=Naseeb+Nagar+Phool+Bagh"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 bg-school-gold text-school-dark text-xs font-bold px-4 py-2 rounded-full hover:bg-school-gold/90 transition-colors"
-                    >
-                      <MapPin className="w-3 h-3" />
-                      Second Branch Map
-                    </a>
+                  <div className="mt-2 bg-white rounded-xl shadow-card px-3 py-1.5 text-center whitespace-nowrap border border-school-gold/10">
+                    <div className="font-display font-bold text-school-dark text-xs">
+                      Second Branch
+                    </div>
+                    <div className="text-school-gold-dark font-semibold text-[10px]">
+                      Naseeb Nagar
+                    </div>
                   </div>
+                </div>
+                {/* CTA buttons */}
+                <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-3">
+                  <a
+                    href="https://maps.google.com?q=Rakshapuram"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 bg-school-green text-white text-xs font-bold px-5 py-2.5 rounded-full hover:bg-school-green/90 transition-all shadow-card hover:shadow-card-hover hover:-translate-y-0.5"
+                  >
+                    <MapPin className="w-3.5 h-3.5" />
+                    Get Directions — Main
+                  </a>
+                  <a
+                    href="https://maps.google.com?q=Naseeb+Nagar+Phool+Bagh"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 bg-school-gold text-school-dark text-xs font-bold px-5 py-2.5 rounded-full hover:bg-school-gold/90 transition-all shadow-card hover:shadow-card-hover hover:-translate-y-0.5"
+                  >
+                    <MapPin className="w-3.5 h-3.5" />
+                    Get Directions — Branch
+                  </a>
                 </div>
               </div>
             </div>
@@ -1597,15 +1923,25 @@ function MainWebsite() {
         </div>
       </section>
 
+      {/* ── Floating Call Button ──────────────────────────── */}
+      <a
+        href="tel:9866058320"
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-school-green text-white font-display font-bold text-sm px-5 py-3.5 rounded-full pulse-call shadow-card-hover hover:bg-school-green/90 hover:scale-105 transition-all duration-300"
+        aria-label="Call Main Branch: 9866058320"
+      >
+        <Phone className="w-5 h-5 text-school-gold" />
+        <span>Call Now</span>
+      </a>
+
       {/* ── Footer ────────────────────────────────────────── */}
-      <footer className="bg-school-dark text-white py-14">
+      <footer className="bg-school-dark text-white py-14 footer-gradient-border">
         <div className="container mx-auto px-4">
           <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-10 mb-10">
             {/* Brand */}
             <div className="sm:col-span-2 md:col-span-1 space-y-4">
               <div className="flex items-center gap-3">
                 <img
-                  src="/assets/uploads/image-1.png"
+                  src="/assets/uploads/image-1-1.png"
                   alt="Logo"
                   className="w-12 h-12 object-contain rounded-full border-2 border-school-gold"
                 />
@@ -1619,8 +1955,9 @@ function MainWebsite() {
                 </div>
               </div>
               <p className="font-body text-white/60 text-sm leading-relaxed">
-                Excellence in Education with Moral Values. CBSE Affiliated
-                school with 1500+ students and 70+ dedicated staff.
+                Excellence in Education with Moral Values. CBSE (Nursery–Gr.5)
+                &amp; SSC (Gr.6–Gr.10) school with 1500+ students and 70+
+                dedicated staff.
               </p>
             </div>
 
