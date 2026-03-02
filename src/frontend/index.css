@@ -388,4 +388,91 @@
       oklch(0.3 0.12 160)
     ) 1;
   }
+
+  /* ── Magazine Cover Hero Animations ─────────────────── */
+  @keyframes hero-glow-pulse {
+    0%, 100% {
+      box-shadow:
+        0 0 40px oklch(0.78 0.16 80 / 0.4),
+        0 0 80px oklch(0.3 0.12 160 / 0.3),
+        0 0 120px oklch(0.78 0.16 80 / 0.15);
+    }
+    50% {
+      box-shadow:
+        0 0 60px oklch(0.78 0.16 80 / 0.6),
+        0 0 100px oklch(0.3 0.12 160 / 0.4),
+        0 0 160px oklch(0.78 0.16 80 / 0.25);
+    }
+  }
+  @keyframes diagonal-slide {
+    0% { transform: translateX(-100%) skewX(-15deg); opacity: 0; }
+    100% { transform: translateX(0) skewX(-15deg); opacity: 1; }
+  }
+  @keyframes badge-float-1 {
+    0%, 100% { transform: translateY(0) rotate(-3deg); }
+    50% { transform: translateY(-10px) rotate(-1deg); }
+  }
+  @keyframes badge-float-2 {
+    0%, 100% { transform: translateY(0) rotate(2deg); }
+    50% { transform: translateY(-8px) rotate(4deg); }
+  }
+  @keyframes badge-float-3 {
+    0%, 100% { transform: translateY(0) rotate(-1deg); }
+    50% { transform: translateY(-12px) rotate(1deg); }
+  }
+  @keyframes watermark-fade {
+    from { opacity: 0; letter-spacing: 0.15em; }
+    to { opacity: 1; letter-spacing: 0.25em; }
+  }
+  @keyframes star-twinkle {
+    0%, 100% { opacity: 0.3; transform: scale(1) rotate(0deg); }
+    50% { opacity: 1; transform: scale(1.3) rotate(180deg); }
+  }
+  @keyframes photo-reveal {
+    0% { opacity: 0; transform: translateX(60px) scale(0.95); }
+    100% { opacity: 1; transform: translateX(0) scale(1); }
+  }
+  @keyframes border-shimmer {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  @keyframes diagonal-stripe-slide {
+    0% { background-position: 0 0; }
+    100% { background-position: 60px 60px; }
+  }
+
+  .hero-glow-pulse {
+    animation: hero-glow-pulse 4s ease-in-out infinite;
+  }
+  .badge-float-1 { animation: badge-float-1 3.5s ease-in-out infinite; }
+  .badge-float-2 { animation: badge-float-2 4s ease-in-out 0.5s infinite; }
+  .badge-float-3 { animation: badge-float-3 3.8s ease-in-out 1s infinite; }
+  .watermark-anim { animation: watermark-fade 1.5s ease 1s both; }
+  .star-twinkle { animation: star-twinkle 2.5s ease-in-out infinite; }
+  .photo-reveal { animation: photo-reveal 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both; }
+
+  .hero-border-shimmer {
+    background: linear-gradient(
+      135deg,
+      oklch(0.78 0.16 80),
+      oklch(0.55 0.18 65),
+      oklch(0.3 0.12 160),
+      oklch(0.45 0.14 155),
+      oklch(0.78 0.16 80)
+    );
+    background-size: 300% 300%;
+    animation: border-shimmer 4s ease infinite;
+  }
+
+  .diagonal-stripe-bg {
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 12px,
+      oklch(1 0 0 / 0.04) 12px,
+      oklch(1 0 0 / 0.04) 24px
+    );
+    animation: diagonal-stripe-slide 3s linear infinite;
+  }
 }

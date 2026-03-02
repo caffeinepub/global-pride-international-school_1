@@ -570,136 +570,235 @@ function MainWebsite() {
       </nav>
 
       {/* ════════════════════════════════════════════════════ */}
-      {/* ── Section 1: Home / Hero ──────────────────────── */}
+      {/* ── Section 1: Home / Hero — Unicent-style Layout ── */}
       {/* ════════════════════════════════════════════════════ */}
       <section
         id="home"
-        className="relative min-h-[92vh] flex items-center overflow-hidden bg-gradient-to-br from-school-dark via-[oklch(0.22_0.06_155)] to-[oklch(0.18_0.04_200)]"
+        className="relative min-h-screen flex items-stretch overflow-hidden bg-white"
       >
-        {/* Decorative background blobs */}
-        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-          <div className="absolute -top-32 -left-32 w-[600px] h-[600px] rounded-full bg-school-green/20 blur-[100px]" />
-          <div className="absolute top-1/2 -right-32 w-[500px] h-[500px] rounded-full bg-school-gold/15 blur-[120px]" />
-          <div className="absolute bottom-0 left-1/3 w-[400px] h-[300px] rounded-full bg-school-green/10 blur-[80px]" />
-          {/* Subtle dot grid */}
-          <div className="absolute inset-0 dot-pattern opacity-10" />
-        </div>
-
-        {/* Content */}
-        <div className="relative z-10 container mx-auto px-4 py-16 md:py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left: Text */}
-            <div>
-              <div className="inline-flex items-center gap-2 bg-school-gold/20 border border-school-gold/40 text-school-gold rounded-full px-4 py-1.5 text-sm font-semibold mb-6 backdrop-blur-sm">
-                <Award className="w-4 h-4" />
-                CBSE (Nursery–Gr.5) · SSC (Gr.6–Gr.10) · Est. 2018+
-              </div>
-
-              <h1 className="hero-title font-display font-bold text-white text-4xl md:text-5xl lg:text-6xl leading-tight mb-4">
-                Global Pride
-                <br />
-                <span className="text-school-gold">International</span> School
-              </h1>
-
-              <p className="hero-subtitle font-body text-white/85 text-lg md:text-xl leading-relaxed mb-6">
-                Excellence in Education with Moral Values — Nurturing future
-                leaders through modern academics, Islamic values, and holistic
-                development.
-              </p>
-
-              {/* Quick highlights */}
-              <div className="flex flex-wrap gap-3 mb-8">
-                {[
-                  "1500+ Students",
-                  "70+ Faculty",
-                  "CBSE & SSC",
-                  "Hifz Program",
-                ].map((tag) => (
-                  <span
-                    key={tag}
-                    className="inline-flex items-center gap-1.5 bg-white/10 border border-white/20 text-white/90 rounded-full px-3 py-1 text-xs font-semibold backdrop-blur-sm"
-                  >
-                    <CheckCircle2 className="w-3 h-3 text-school-gold" />
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              <div className="hero-cta flex flex-wrap gap-4">
-                <Button
-                  onClick={() => scrollTo("admissions")}
-                  className="pulse-btn bg-school-gold hover:bg-school-gold/90 text-school-dark font-display font-bold text-base px-8 py-3 rounded-full shadow-golden transition-all"
-                  size="lg"
-                >
-                  Apply for Admission
-                </Button>
-                <Button
-                  onClick={() => scrollTo("about")}
-                  variant="outline"
-                  className="border-white/40 bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3 rounded-full backdrop-blur-sm"
-                  size="lg"
-                >
-                  Discover More
-                  <ChevronDown className="ml-2 w-4 h-4" />
-                </Button>
-              </div>
+        {/* ── Main Content ── */}
+        <div className="relative z-10 w-full flex flex-col lg:flex-row min-h-screen">
+          {/* ════ LEFT COLUMN: White panel with text & CTAs ════ */}
+          <div className="flex flex-col justify-center w-full lg:w-[45%] px-6 sm:px-10 lg:px-14 xl:px-20 py-20 lg:py-0 bg-white relative z-10">
+            {/* Top badge */}
+            <div className="hero-title inline-flex items-center gap-2 self-start rounded-full px-4 py-2 text-xs font-bold tracking-widest uppercase mb-6 border border-school-green/30 bg-school-green/8 text-school-green">
+              <Award className="w-3.5 h-3.5" />
+              CBSE · SSC · Est. 2018+ · Hyderabad
             </div>
 
-            {/* Right: Featured student photo - square template */}
-            <div className="flex justify-center lg:justify-end hero-img-card">
-              <div className="relative">
-                {/* Outer glow ring */}
-                <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-school-gold/50 via-school-green/40 to-school-gold/30 blur-2xl" />
-                {/* Double border frame effect */}
-                <div className="relative p-1.5 rounded-[2rem] bg-gradient-to-br from-school-gold via-school-green to-school-gold shadow-2xl w-[320px] md:w-[400px] lg:w-[440px]">
+            {/* Main headline */}
+            <div className="hero-title mb-4">
+              <h1
+                className="font-display font-black leading-tight tracking-tight text-school-green"
+                style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)" }}
+              >
+                Global Pride
+                <br />
+                <span className="text-school-gold-dark">International</span>
+                <br />
+                School
+              </h1>
+            </div>
+
+            {/* Subheading */}
+            <p className="hero-subtitle font-body text-base md:text-lg leading-relaxed mb-8 max-w-[480px] text-foreground/70">
+              Excellence in Education with Moral Values
+            </p>
+
+            {/* Achievement highlight cards */}
+            <div className="flex flex-col gap-3 mb-8 hero-subtitle">
+              {[
+                {
+                  icon: <Award className="w-5 h-5 text-school-gold-dark" />,
+                  text: "CBSE Affiliated School – Nursery to Grade 5",
+                },
+                {
+                  icon: (
+                    <GraduationCap className="w-5 h-5 text-school-gold-dark" />
+                  ),
+                  text: "SSC Board School – Grade 6 to Grade 10",
+                },
+              ].map(({ icon, text }) => (
+                <div
+                  key={text}
+                  className="flex items-center gap-3 bg-white rounded-xl px-4 py-3.5 border-2 border-school-green/20 shadow-sm hover:border-school-green/40 hover:shadow-md transition-all duration-200"
+                >
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-school-gold/15 flex items-center justify-center border border-school-gold/30">
+                    {icon}
+                  </div>
+                  <span className="font-body font-semibold text-sm text-school-dark leading-snug">
+                    {text}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            {/* Admissions open badge */}
+            <div
+              className="inline-flex items-center gap-2 self-start rounded-full px-4 py-2 mb-6 hero-cta"
+              style={{
+                background: "linear-gradient(90deg, #1a6b5a, #2a8a75)",
+                boxShadow: "0 4px 16px rgba(26,107,90,0.25)",
+              }}
+            >
+              <div className="w-2 h-2 rounded-full bg-school-gold animate-pulse" />
+              <span className="text-white text-sm font-bold tracking-wide">
+                🎓 Admissions Open 2026–2027
+              </span>
+              <span className="text-school-gold text-xs font-semibold bg-white/15 rounded-full px-2 py-0.5">
+                Hurry Up!
+              </span>
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="hero-cta flex flex-wrap gap-4">
+              <Button
+                onClick={() => scrollTo("admissions")}
+                size="lg"
+                className="font-display font-bold text-base px-8 py-3 rounded-full transition-all hover:scale-105 shadow-lg"
+                style={{
+                  background: "linear-gradient(135deg, #1a6b5a, #2a8a75)",
+                  color: "white",
+                  border: "none",
+                  boxShadow: "0 8px 24px rgba(26,107,90,0.35)",
+                }}
+              >
+                Apply for Admission
+              </Button>
+              <Button
+                onClick={() => scrollTo("about")}
+                size="lg"
+                variant="outline"
+                className="font-semibold px-6 py-3 rounded-full transition-all hover:scale-105 border-2 border-school-green/30 text-school-green hover:bg-school-green/5"
+              >
+                Discover More
+                <ChevronDown className="ml-2 w-4 h-4" />
+              </Button>
+            </div>
+          </div>
+
+          {/* ════ RIGHT COLUMN: Attractive framed photo composition ════ */}
+          <div className="relative w-full lg:w-[55%] min-h-[480px] lg:min-h-screen flex-shrink-0 flex items-center justify-center overflow-hidden bg-gradient-to-br from-emerald-50 via-teal-50 to-amber-50 photo-reveal py-12 lg:py-0">
+            {/* Background decorative blobs */}
+            <div
+              className="absolute top-0 right-0 w-80 h-80 rounded-full pointer-events-none opacity-40"
+              style={{
+                background:
+                  "radial-gradient(circle, #c8eeea 0%, transparent 70%)",
+              }}
+            />
+            <div
+              className="absolute bottom-0 left-0 w-64 h-64 rounded-full pointer-events-none opacity-30"
+              style={{
+                background:
+                  "radial-gradient(circle, #fde68a 0%, transparent 70%)",
+              }}
+            />
+            {/* Decorative dots grid */}
+            <div
+              className="absolute inset-0 pointer-events-none opacity-15"
+              style={{
+                backgroundImage:
+                  "radial-gradient(circle, #1a6b5a 1px, transparent 1px)",
+                backgroundSize: "24px 24px",
+              }}
+            />
+
+            {/* Main photo frame composition */}
+            <div className="relative z-10 flex flex-col items-center">
+              {/* Outer decorative ring */}
+              <div
+                className="relative"
+                style={{
+                  padding: "6px",
+                  background:
+                    "linear-gradient(135deg, #1a6b5a 0%, #f59e0b 50%, #1a6b5a 100%)",
+                  borderRadius: "24px",
+                  boxShadow:
+                    "0 20px 60px rgba(26,107,90,0.25), 0 0 0 3px rgba(255,255,255,0.8)",
+                }}
+              >
+                {/* White inner mount */}
+                <div
+                  style={{
+                    padding: "8px",
+                    background: "white",
+                    borderRadius: "20px",
+                  }}
+                >
+                  {/* Photo — portrait aspect ratio, not cropped */}
                   <div
-                    className="rounded-[1.6rem] overflow-hidden"
-                    style={{ aspectRatio: "1/1" }}
+                    style={{
+                      width: "clamp(240px, 30vw, 360px)",
+                      borderRadius: "14px",
+                      overflow: "hidden",
+                      boxShadow: "inset 0 2px 8px rgba(0,0,0,0.08)",
+                    }}
                   >
                     <img
-                      src="/assets/uploads/image-2-1.png"
-                      alt="Global Pride International School"
-                      className="w-full h-full object-cover object-center bg-white"
+                      src="/assets/uploads/image-4-1.png"
+                      alt="Global Pride International School Student"
+                      style={{
+                        width: "100%",
+                        display: "block",
+                        objectFit: "cover",
+                        objectPosition: "center top",
+                        aspectRatio: "3/4",
+                      }}
                     />
                   </div>
-                  {/* Overlay badge at bottom */}
-                  <div className="absolute bottom-0 left-1.5 right-1.5 rounded-b-[1.6rem] bg-gradient-to-t from-school-dark/90 via-school-dark/60 to-transparent p-5 pt-10">
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 rounded-full bg-school-gold animate-pulse" />
-                      <span className="text-white font-semibold text-sm">
-                        Activity-Based Learning
-                      </span>
+                </div>
+              </div>
+
+              {/* Floating GPIS year badge — top right of frame */}
+              <div
+                className="absolute -top-4 -right-4 z-20 rounded-full px-3 py-1.5 text-xs font-bold shadow-lg border-2 border-white"
+                style={{
+                  background: "linear-gradient(135deg, #1a6b5a, #25a090)",
+                  color: "white",
+                }}
+              >
+                2026–27
+              </div>
+
+              {/* Corner accent dots */}
+              <div className="absolute -top-2 -left-2 w-5 h-5 rounded-full bg-school-gold border-2 border-white shadow-sm" />
+              <div className="absolute -bottom-2 -right-2 w-5 h-5 rounded-full bg-school-green border-2 border-white shadow-sm" />
+              <div className="absolute -bottom-2 -left-2 w-4 h-4 rounded-full bg-amber-300 border-2 border-white shadow-sm" />
+
+              {/* Stats strip below photo */}
+              <div
+                className="mt-6 rounded-2xl px-5 py-3 shadow-lg hidden sm:flex items-center gap-5"
+                style={{
+                  background: "rgba(255,255,255,0.95)",
+                  backdropFilter: "blur(12px)",
+                  border: "1px solid rgba(26,107,90,0.15)",
+                }}
+              >
+                {[
+                  { value: "1500+", label: "Students" },
+                  { value: "70+", label: "Staff" },
+                  { value: "6+", label: "Years" },
+                ].map(({ value, label }, i) => (
+                  <div key={label} className="flex items-center gap-5">
+                    {i > 0 && <div className="w-px h-8 bg-school-green/20" />}
+                    <div className="text-center">
+                      <div className="font-display font-black text-lg leading-none text-school-green">
+                        {value}
+                      </div>
+                      <div className="text-[10px] font-semibold mt-0.5 uppercase tracking-wider text-foreground/50">
+                        {label}
+                      </div>
                     </div>
-                    <p className="text-white/70 text-xs mt-1">
-                      Hands-on education that sparks curiosity
-                    </p>
                   </div>
-                </div>
-                {/* Floating badge top-right */}
-                <div className="absolute -top-4 -right-4 bg-school-gold text-school-dark rounded-2xl px-3 py-2 shadow-golden text-center z-10">
-                  <div className="font-display font-bold text-lg leading-none">
-                    6+
-                  </div>
-                  <div className="text-[10px] font-semibold leading-none mt-0.5">
-                    Years
-                  </div>
-                </div>
-                {/* Floating badge bottom-left */}
-                <div className="absolute -bottom-4 -left-4 bg-school-green text-white rounded-2xl px-3 py-2 shadow-card text-center z-10">
-                  <div className="font-display font-bold text-lg leading-none">
-                    1500+
-                  </div>
-                  <div className="text-[10px] font-semibold leading-none mt-0.5">
-                    Students
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
         </div>
 
         {/* Scroll cue */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-white/50 animate-bounce">
+        <div className="absolute bottom-8 left-[22%] -translate-x-1/2 z-20 animate-bounce hidden lg:block text-school-green/40">
           <ChevronDown className="w-6 h-6" />
         </div>
       </section>
@@ -940,10 +1039,9 @@ function MainWebsite() {
                   Our Vision
                 </h3>
                 <p className="font-body text-white/85 leading-relaxed">
-                  To be a centre of excellence that cultivates intellectual
-                  curiosity, moral integrity, and global citizenship —
-                  empowering every student to contribute positively to society
-                  while staying firmly rooted in their values.
+                  We are dedicated to equip our students with the knowledge and
+                  life skills that can make them achievers in the journey of
+                  life, turning them into global citizens of the 22nd century.
                 </p>
               </div>
             </FadeIn>
@@ -955,13 +1053,31 @@ function MainWebsite() {
                 <h3 className="font-display font-bold text-xl mb-3">
                   Our Mission
                 </h3>
-                <p className="font-body text-school-dark/85 leading-relaxed">
-                  To provide quality education through CBSE (Nursery–Grade 5)
-                  and SSC (Grade 6–10) curricula blended with Islamic values,
-                  fostering critical thinking, creativity, and character
-                  development through innovative teaching methods, experienced
-                  faculty, and a safe, nurturing campus environment.
+                <p className="font-body text-school-dark/85 leading-relaxed mb-3">
+                  The mission of GPIS is to provide a nurturing, stimulation
+                  child-centred learning environment.
                 </p>
+                <ul className="font-body text-school-dark/80 space-y-2">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 mt-0.5 text-school-green flex-shrink-0" />
+                    <span>To set a trend of specialised education.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 mt-0.5 text-school-green flex-shrink-0" />
+                    <span>
+                      To enable them to strive and survive in the advance and
+                      competitive world of tomorrow by creating tech-savvies of
+                      today.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 mt-0.5 text-school-green flex-shrink-0" />
+                    <span>
+                      To create an environment where the students can explore
+                      themselves and give their best.
+                    </span>
+                  </li>
+                </ul>
               </div>
             </FadeIn>
           </div>
