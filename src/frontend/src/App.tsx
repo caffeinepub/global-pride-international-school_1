@@ -657,9 +657,9 @@ function MainWebsite() {
                     style={{ aspectRatio: "1/1" }}
                   >
                     <img
-                      src="/assets/uploads/image-1-1.png"
+                      src="/assets/uploads/image-2-1.png"
                       alt="Global Pride International School"
-                      className="w-full h-full object-contain object-center bg-white"
+                      className="w-full h-full object-cover object-center bg-white"
                     />
                   </div>
                   {/* Overlay badge at bottom */}
