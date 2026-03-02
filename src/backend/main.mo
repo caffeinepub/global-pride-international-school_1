@@ -5,7 +5,9 @@ import Iter "mo:core/Iter";
 import Runtime "mo:core/Runtime";
 import Nat "mo:core/Nat";
 import Order "mo:core/Order";
+import Migration "migration";
 
+(with migration = Migration.run)
 actor {
   type AdmissionEnquiry = {
     id : Nat;
@@ -36,13 +38,17 @@ actor {
       message;
       timestamp = Time.now();
     };
-    enquiries.add(nextId, enquiry);
+    enquiries.add(nextId, enquiry); // Fixed from Map.put() to Map.add()
     nextId += 1;
     enquiry.id;
   };
 
   public query ({ caller }) func getAllEnquiries() : async [AdmissionEnquiry] {
-    enquiries.values().toArray().sort();
+    enquiries.values().toArray().sort(
+      func(enquiry1, enquiry2) {
+        Nat.compare(enquiry1.id, enquiry2.id);
+      }
+    );
   };
 
   public query ({ caller }) func getEnquiryById(id : Nat) : async AdmissionEnquiry {
@@ -52,3 +58,4 @@ actor {
     };
   };
 };
+

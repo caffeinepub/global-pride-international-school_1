@@ -357,7 +357,7 @@ export default function App() {
 
 /* ── Main Website ─────────────────────────────────────── */
 function MainWebsite() {
-  const { actor } = useActor();
+  const { actor, isFetching: actorLoading } = useActor();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
@@ -416,7 +416,9 @@ function MainWebsite() {
       return;
     }
     if (!actor) {
-      toast.error("Connection not ready. Please try again.");
+      toast.error(
+        "Connection to server failed. Please refresh the page and try again.",
+      );
       return;
     }
     setSubmitting(true);
@@ -1355,7 +1357,7 @@ function MainWebsite() {
 
                   <Button
                     type="submit"
-                    disabled={submitting}
+                    disabled={submitting || (actorLoading && !actor)}
                     className="w-full bg-school-green hover:bg-school-green/90 text-white font-display font-bold text-base py-3 rounded-full shadow-card transition-all"
                     size="lg"
                   >
@@ -1363,6 +1365,11 @@ function MainWebsite() {
                       <>
                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                         Submitting...
+                      </>
+                    ) : actorLoading && !actor ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Connecting...
                       </>
                     ) : (
                       "Submit Enquiry"
