@@ -23,6 +23,7 @@ import { useActor } from "./hooks/useActor";
 
 interface AdminDashboardProps {
   onLogout: () => void;
+  onGoHome?: () => void;
 }
 
 function formatTimestamp(timestamp: bigint): string {
@@ -35,7 +36,10 @@ function formatTimestamp(timestamp: bigint): string {
   }).format(new Date(ms));
 }
 
-export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
+export default function AdminDashboard({
+  onLogout,
+  onGoHome,
+}: AdminDashboardProps) {
   const { actor, isFetching: actorFetching } = useActor();
   const [search, setSearch] = useState("");
 
@@ -130,12 +134,18 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
             </div>
           </div>
           <div className="flex items-center gap-2 flex-shrink-0">
-            <a
-              href="/"
+            <button
+              type="button"
+              onClick={
+                onGoHome ??
+                (() => {
+                  window.location.hash = "";
+                })
+              }
               className="hidden md:inline-flex items-center gap-1.5 text-white/70 hover:text-white text-sm font-medium transition-colors px-3 py-1.5 rounded-lg hover:bg-white/10"
             >
               View Website
-            </a>
+            </button>
             <Button
               onClick={handleLogout}
               variant="outline"

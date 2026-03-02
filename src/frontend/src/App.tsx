@@ -288,29 +288,66 @@ function Lightbox({
 }
 
 /* ── Admin Router ─────────────────────────────────────── */
-function AdminRouter() {
+function AdminRouter({ onGoHome }: { onGoHome: () => void }) {
   const [isAuthenticated, setIsAuthenticated] = useState(
     () => localStorage.getItem("gpis_admin_auth") === "true",
   );
 
   if (!isAuthenticated) {
-    return <AdminLogin onLogin={() => setIsAuthenticated(true)} />;
+    return (
+      <AdminLogin
+        onLogin={() => setIsAuthenticated(true)}
+        onGoHome={onGoHome}
+      />
+    );
   }
-  return <AdminDashboard onLogout={() => setIsAuthenticated(false)} />;
+  return (
+    <AdminDashboard
+      onLogout={() => {
+        setIsAuthenticated(false);
+      }}
+      onGoHome={onGoHome}
+    />
+  );
 }
 
 /* ── Main App ─────────────────────────────────────────── */
 export default function App() {
-  // Admin panel route check
-  const isAdminRoute =
-    typeof window !== "undefined" &&
-    window.location.pathname.startsWith("/admin");
+  // Admin panel route check — supports both /admin path and #admin hash
+  const [route, setRoute] = useState(() => {
+    if (typeof window === "undefined") return "main";
+    const path = window.location.pathname;
+    const hash = window.location.hash;
+    if (path.startsWith("/admin") || hash === "#admin") return "admin";
+    return "main";
+  });
 
-  if (isAdminRoute) {
+  // Listen for hash changes
+  useEffect(() => {
+    const handler = () => {
+      if (window.location.hash === "#admin") {
+        setRoute("admin");
+      } else if (
+        window.location.hash === "#main" ||
+        window.location.hash === ""
+      ) {
+        setRoute("main");
+      }
+    };
+    window.addEventListener("hashchange", handler);
+    return () => window.removeEventListener("hashchange", handler);
+  }, []);
+
+  if (route === "admin") {
     return (
       <>
         <Toaster position="top-right" />
-        <AdminRouter />
+        <AdminRouter
+          onGoHome={() => {
+            window.location.hash = "";
+            setRoute("main");
+          }}
+        />
       </>
     );
   }
@@ -424,7 +461,7 @@ function MainWebsite() {
       {/* ── Admission Banner ──────────────────────────────── */}
       <div className="admission-banner py-2 px-4 text-center text-school-dark font-display font-bold text-sm md:text-base tracking-wide shadow-md relative z-50">
         <span className="inline-flex items-center gap-2 flex-wrap justify-center">
-          <Star className="w-4 h-4 fill-current" />🎓 Admissions Open 2024–25
+          <Star className="w-4 h-4 fill-current" />🎓 Admissions Open 2026–2027
           &nbsp;|&nbsp; Enroll Now – Hurry Up! Limited Seats Available
           <Star className="w-4 h-4 fill-current" />
         </span>
@@ -1069,7 +1106,7 @@ function MainWebsite() {
           <FadeIn className="text-center mb-14">
             <div className="inline-flex items-center gap-2 bg-school-green text-white rounded-full px-5 py-2 text-sm font-bold mb-4 shadow-card">
               <Star className="w-4 h-4 text-school-gold fill-current" />
-              Admissions Open 2024–25
+              Admissions Open 2026–2027
               <Star className="w-4 h-4 text-school-gold fill-current" />
             </div>
             <h2 className="font-display font-bold text-3xl md:text-4xl text-school-dark mb-4">
@@ -1646,19 +1683,31 @@ function MainWebsite() {
               © {new Date().getFullYear()} Global Pride International School.
               All rights reserved.
             </p>
-            <p>
-              Built with{" "}
-              <Heart className="inline w-3.5 h-3.5 text-rose-400 fill-current" />{" "}
-              using{" "}
-              <a
-                href={`https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(typeof window !== "undefined" ? window.location.hostname : "")}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/60 hover:text-school-gold transition-colors"
+            <div className="flex items-center gap-4">
+              <button
+                type="button"
+                onClick={() => {
+                  window.location.hash = "admin";
+                }}
+                className="text-white/20 hover:text-white/40 text-xs transition-colors"
+                aria-label="Admin"
               >
-                caffeine.ai
-              </a>
-            </p>
+                Admin
+              </button>
+              <p>
+                Built with{" "}
+                <Heart className="inline w-3.5 h-3.5 text-rose-400 fill-current" />{" "}
+                using{" "}
+                <a
+                  href={`https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(typeof window !== "undefined" ? window.location.hostname : "")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/60 hover:text-school-gold transition-colors"
+                >
+                  caffeine.ai
+                </a>
+              </p>
+            </div>
           </div>
         </div>
       </footer>

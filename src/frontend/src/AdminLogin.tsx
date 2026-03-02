@@ -13,9 +13,10 @@ import { useState } from "react";
 
 interface AdminLoginProps {
   onLogin: () => void;
+  onGoHome?: () => void;
 }
 
-export default function AdminLogin({ onLogin }: AdminLoginProps) {
+export default function AdminLogin({ onLogin, onGoHome }: AdminLoginProps) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -177,12 +178,18 @@ export default function AdminLogin({ onLogin }: AdminLoginProps) {
 
           {/* Footer */}
           <div className="mt-8 pt-6 border-t border-border text-center">
-            <a
-              href="/"
+            <button
+              type="button"
+              onClick={
+                onGoHome ??
+                (() => {
+                  window.location.hash = "";
+                })
+              }
               className="text-sm text-foreground/50 hover:text-school-green transition-colors font-medium"
             >
               ← Back to School Website
-            </a>
+            </button>
           </div>
         </div>
 
